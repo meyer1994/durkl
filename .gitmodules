@@ -4,6 +4,3 @@
 [submodule "client"]
 	path = client
 	url = https://github.com/meyer1994/durkl-client
-[submodule "api"]
-	path = api
-	url = https://github.com/meyer1994/durkl-api
