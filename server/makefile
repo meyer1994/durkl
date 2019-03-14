@@ -1,8 +1,4 @@
 
-APP_DIR=durkl
-TEST_DIR=tests
-
-
 compile:
 	python -m compileall -f durkl tests
 
