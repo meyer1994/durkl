@@ -9,3 +9,7 @@ test:
 
 coverage: test
 	python -m coverage report -m
+
+
+lint:
+	python -m flake8 --statistics
