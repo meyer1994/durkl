@@ -2,7 +2,7 @@ import os
 
 # Use to create the local, usually for testing, database
 basedir = os.path.abspath(os.path.dirname(__file__))
-SQLITE_MEM = 'sqlite:///:memory'
+SQLITE_MEM = 'sqlite://'
 
 
 class Config(object):
