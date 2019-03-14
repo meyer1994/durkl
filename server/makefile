@@ -4,11 +4,11 @@ compile:
 
 
 test:
-	python -m coverage run --source=durkl -m unittest -vb discover tests
+	python -m coverage run --source=durkl -m unittest discover -vb tests
 
 
 coverage: test
-	python -m coverage report -m
+	python -m coverage report -mi
 
 
 lint:
