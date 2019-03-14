@@ -1,2 +1,0 @@
-# durkl
-(Dark + url) shortener
