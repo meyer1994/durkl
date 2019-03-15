@@ -1,2 +1,1 @@
-# TODO
-pass
+from app import app

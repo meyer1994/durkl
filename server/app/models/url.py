@@ -18,7 +18,7 @@ URL_REGEX = re.compile(
 
 
 class URL(db.Model):
-    id = db.Column(db.Integer(), primary_key=True)
+    id = db.Column(db.Integer(), primary_key=True, auto_increment=True)
     url = db.Column(db.Text(), index=True, nullable=False, unique=True)
     date = db.Column(db.Date(), default=datetime.utcnow, nullable=False)
 
