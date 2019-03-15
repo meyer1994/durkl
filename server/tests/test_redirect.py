@@ -2,6 +2,7 @@ from utils import TestFlask
 
 
 class TestRedirect(TestFlask):
+    ''' Tests redirections in the / (root) endpoint '''
     def test_url(self):
         ''' Gets the site with id 1 '''
         response = self.client.get('/1')

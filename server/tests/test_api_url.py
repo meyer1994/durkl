@@ -1,7 +1,8 @@
 from utils import TestFlask
 
 
-class TestApiUrl(TestFlask):
+class TestApiGetUrl(TestFlask):
+    ''' Test the GET method for the endpoint /api/urls '''
     def test_get_urls(self):
         ''' Get all URLs in server '''
         response = self.client.get('/api/urls').json
@@ -24,6 +25,9 @@ class TestApiUrl(TestFlask):
         self.assertEqual(status_code, 404)
         self.assertEqual(message, 'Id %d not found' % url_id)
 
+
+class TestApiPostUrl(TestFlask):
+    ''' Test the POST method for the endpoint /api/urls '''
     def test_post_url(self):
         ''' Post URL in server '''
         data = {'url': 'http://devdocs.io'}
