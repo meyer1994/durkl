@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from durkl import db
+from app import db
 
 
 class URL(db.Model):

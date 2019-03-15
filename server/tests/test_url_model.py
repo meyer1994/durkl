@@ -1,7 +1,7 @@
 from datetime import datetime
 from unittest import TestCase
 
-from durkl.models import URL
+from app.models import URL
 
 
 class TestURLModel(TestCase):

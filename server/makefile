@@ -4,7 +4,7 @@ compile:
 
 
 test:
-	python -m coverage run --source=durkl -m unittest discover -vb tests
+	python -m coverage run --source=app -m unittest discover -vb tests
 
 
 coverage: test
