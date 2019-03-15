@@ -2,20 +2,32 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 
-from config import Config
+
+db = SQLAlchemy()
+migrate = Migrate()
 
 
-app = Flask(__name__)
-app.config.from_object(Config)
-db = SQLAlchemy(app)
-migrate = Migrate(app, db)
+def create_app(config):
+    app = Flask(__name__)
+    app.config.from_object(config)
+
+    # Database
+    db.init_app(app)
+    with app.app_context():
+        db.create_all()
+
+    # Migration
+    migrate.init_app(app, db)
+
+    # API
+    from app.routes import api_bp
+    app.register_blueprint(api_bp, url_prefix='/api')
+
+    # Redirect
+    from app.routes import redirect_bp
+    app.register_blueprint(redirect_bp, url_prefix='/')
+
+    return app
 
 
 from app import routes, models
-
-# add simple URL to database
-with app.app_context():
-    db.create_all()
-    url = models.URL(id=1, url='https://example.org')
-    db.session.add(url)
-    db.session.commit()
