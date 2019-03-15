@@ -22,6 +22,7 @@ class TestFlask(TestCase):
             urls = [URL(url=u) for u in TestFlask.TEST_URLS]
             db.session.add_all(urls)
             db.session.commit()
+        self.db = db
 
     def tearDown(self):
         ''' Drop all table items '''

@@ -1,5 +1,7 @@
 from utils import TestFlask
 
+from app.models import URL
+
 
 class TestApiGetUrl(TestFlask):
     ''' Test the GET method for the endpoint /api/urls '''
@@ -9,6 +11,15 @@ class TestApiGetUrl(TestFlask):
         urls = [u['url'] for u in response]
         self.assertListEqual(urls, TestFlask.TEST_URLS)
         self.assertEqual(len(response), 3)
+
+    def test_get_urls_empty(self):
+        ''' Returns empty list '''
+        with self.app.app_context():
+            # Empty table
+            [self.db.session.delete(u) for u in URL.query.all()]
+            self.db.session.commit()
+        response = self.client.get('/api/urls').json
+        self.assertEqual(response, [])
 
     def test_get_url(self):
         ''' Get single URL from server '''
