@@ -18,3 +18,8 @@ class TestURLModel(TestCase):
         url = URL(id=1, url='https://example.org', date=time)
         expected = {'id': 1, 'url': 'https://example.org', 'date': time}
         self.assertEqual(dict(url), expected)
+
+    def test_invalid_url(self):
+        ''' Should raise ValueError when URL is invalid '''
+        with self.assertRaises(ValueError):
+            URL(url='invalid')
