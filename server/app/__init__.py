@@ -11,6 +11,11 @@ db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 
 
-@app.route('/')
-def hello():
-    return 'hello world'
+from app import routes, models
+
+# add simple URL to database
+with app.app_context():
+    db.create_all()
+    url = models.URL(id=1, url='https://example.org')
+    db.session.add(url)
+    db.session.commit()

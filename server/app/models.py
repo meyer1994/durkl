@@ -14,13 +14,15 @@ URL_REGEX = re.compile(
     r'localhost|'                                       # localhost...
     r'\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})'              # ...or ip
     r'(?::\d+)?'                                        # optional port
-    r'(?:/?|[/?]\S+)$', re.IGNORECASE)
+    r'(?:/?|[/?]\S+)$', re.IGNORECASE
+)
 
 
 class URL(db.Model):
-    id = db.Column(db.Integer(), primary_key=True, auto_increment=True)
-    url = db.Column(db.Text(), index=True, nullable=False, unique=True)
-    date = db.Column(db.Date(), default=datetime.utcnow, nullable=False)
+    id = db.Column(db.Integer, primary_key=True)
+    url = db.Column(db.Text, index=True, unique=True, nullable=False)
+    created_at = db.Column(db.Date, default=datetime.utcnow, nullable=False)
+    times_accessed = db.Column(db.Integer, default=0, nullable=False)
 
     @orm.validates('url')
     def validate_url(self, key, url):
@@ -41,10 +43,8 @@ class URL(db.Model):
             raise ValueError('The URL %s is not valid' % url)
         return url
 
-    def __repr__(self):
-        return 'URL(id=%s, url=%s, date=%s)' % (self.id, self.url, self.date)
-
     def __iter__(self):
         yield 'id', self.id
         yield 'url', self.url
-        yield 'date', self.date
+        yield 'created_at', self.created_at
+        yield 'times_accessed', self.times_accessed
